@@ -1,9 +1,11 @@
 ﻿using Api.Controllers;
+using Api.Test.Fakes.Repositories;
 using Domain.Entities;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Api.Test.Controller
@@ -14,13 +16,13 @@ namespace Api.Test.Controller
 
         public PersonControllerTest()
         {
-            personController = new PersonController();
+            personController = new PersonController(new FakePersonRepository());
         }
 
         [Fact]
-        public void ShouldReturnListPerson()
+        public async Task ShouldReturnListPerson()
         {
-            var persons = personController.Get();
+            var persons = await personController.Get();
             Assert.IsAssignableFrom(typeof(IEnumerable<Person>), persons);
         }
 
@@ -29,12 +31,12 @@ namespace Api.Test.Controller
         [InlineData("Mariana", "mguin@outlook.com")]
         [InlineData(null,null)]
         [InlineData("","")]
-        public void ShouldAddPersonAndReturnOkAndCheckIfInserted(string name,string email)
+        public async Task ShouldAddPersonAndReturnOkAndCheckIfInserted(string name,string email)
         {
-            var actual = personController.Post(name,email) as HttpStatusCodeResult;
+            var actual = await personController.Post(name,email) as HttpStatusCodeResult;
             Assert.Equal((int)HttpStatusCode.OK,actual.StatusCode);
 
-            var expected = personController.Get();
+            var expected = await personController.Get();
             Assert.True(expected.Any(a => a.Name == name));
             Assert.True(expected.Any(a => a.Email == email));
         }

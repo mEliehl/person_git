@@ -1,32 +1,34 @@
 ﻿using Domain.Entities;
+using Domain.Repositories;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
     public class PersonController
     {
-        private IList<Person> persons;
+        private IPersonRepository personRepository;
 
-        public PersonController()
+        public PersonController(IPersonRepository personRepository)
         {
-            persons = new List<Person>();
+            this.personRepository = personRepository;
         }
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<Person> Get()
+        public async Task<IEnumerable<Person>> Get()
         {
-            return persons;
+            return await personRepository.Get();
         }
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post(string name,string email)
+        public async Task<IActionResult> Post(string name,string email)
         {
-            persons.Add(new Person(name, email));
+            await personRepository.Add(new Person(name, email));
             
             return new HttpStatusCodeResult((int)HttpStatusCode.OK);
         }
