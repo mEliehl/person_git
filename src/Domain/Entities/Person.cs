@@ -2,6 +2,11 @@
 {
     public class Person : Entity
     {
+        internal Person()
+        {
+
+        }
+
         public Person(string Name,
             string Email)
         {
