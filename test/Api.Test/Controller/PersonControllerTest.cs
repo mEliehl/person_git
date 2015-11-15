@@ -1,5 +1,6 @@
 ﻿using Api.Controllers;
 using Api.Test.Fakes.Repositories;
+using Api.ViewModels.Person;
 using Domain.Entities;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
@@ -33,7 +34,12 @@ namespace Api.Test.Controller
         [InlineData("","")]
         public async Task ShouldAddPersonAndReturnOkAndCheckIfInserted(string name,string email)
         {
-            var actual = await personController.Post(name,email) as HttpStatusCodeResult;
+            var person = new AddPersonViewModel()
+            {
+                Name = name,
+                Email = email
+            };
+            var actual = await personController.Post(person) as HttpStatusCodeResult;
             Assert.Equal((int)HttpStatusCode.OK,actual.StatusCode);
 
             var expected = await personController.Get();
