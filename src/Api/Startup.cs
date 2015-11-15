@@ -21,6 +21,7 @@ namespace Api
             app.UseIISPlatformHandler();
 
             app.UseMvc();
+            app.UseStaticFiles();
         }
     }
 }
