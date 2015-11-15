@@ -11,7 +11,11 @@
         </thead>
         <tbody>
             <tr ng-repeat="person in persons">
-                <td></td>
+                <td>
+                    <a href="/person/edit/{{person.Id}}" class="btn btn-default btn-xs">edit</a>
+                    <a href="/person/delete/{{person.Id}}" class="btn btn-danger btn-xs">delete</a>
+                </td>
+
                 <td>{{person.Name}}</td>
                 <td>{{person.Email}}</td>
             </tr>

@@ -17,5 +17,10 @@
         public string Name { get; private set; }
         public string Email { get; private set; }
 
+        public void ChangeName(string newName)
+        {
+            Name = newName;
+        }
+
     }
 }
