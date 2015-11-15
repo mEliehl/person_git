@@ -1,0 +1,24 @@
+﻿<div>
+
+    <h1>List Person</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>e-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="person in persons">
+                <td></td>
+                <td>{{person.Name}}</td>
+                <td>{{person.Email}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/person/add" class="btn btn-primary">Add New Person</a>
+    </p>
+</div>

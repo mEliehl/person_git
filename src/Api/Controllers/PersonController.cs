@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Api.ViewModels.Person;
+using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
@@ -26,9 +27,9 @@ namespace Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post(string name,string email)
+        public async Task<IActionResult> Post([FromBody]AddPersonViewModel person)
         {
-            await personRepository.Add(new Person(name, email));
+            await personRepository.Add(new Person(person.Name, person.Email));
             
             return new HttpStatusCodeResult((int)HttpStatusCode.OK);
         }
