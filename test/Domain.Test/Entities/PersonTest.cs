@@ -16,5 +16,15 @@ namespace Domain.Test.Entities
             Assert.Equal(email, person.Email);
             Assert.Equal(0, person.Id);
         }
+
+        [Theory]
+        [InlineData("Marcos", "meliehl@outlook.com","Marcolino")]
+        [InlineData("Mariana", "mguin@outlook.com","Mari")]
+        public void ShouldCreatePersonAndChangeName(string name, string email, string newName)
+        {
+            var person = new Person(name, email);
+            person.ChangeName(newName);
+            Assert.Equal(newName, person.Name);
+        }
     }
 }

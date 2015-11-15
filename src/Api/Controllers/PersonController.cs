@@ -25,12 +25,39 @@ namespace Api.Controllers
             return await personRepository.Get();
         }
 
+        // GET: api/{id}
+        [HttpGet("{id:int}")]
+        public async Task<Person> Get(int id)
+        {
+            return await personRepository.GetByIdAsync(id);
+        }
+
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]AddPersonViewModel person)
+        public async Task<IActionResult> Post([FromBody]AddUpdatePersonViewModel viewModel)
         {
-            await personRepository.Add(new Person(person.Name, person.Email));
+            await personRepository.Add(new Person(viewModel.Name, viewModel.Email));
             
+            return new HttpStatusCodeResult((int)HttpStatusCode.OK);
+        }
+
+        // Put api/values
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody]AddUpdatePersonViewModel viewModel)
+        {
+            var person = await personRepository.GetByIdAsync(viewModel.Id);
+            person.ChangeName(viewModel.Name);
+            await personRepository.Update(person);
+
+            return new HttpStatusCodeResult((int)HttpStatusCode.OK);
+        }
+
+        // Delete api/{id}
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await personRepository.Remove(id);
+
             return new HttpStatusCodeResult((int)HttpStatusCode.OK);
         }
     }

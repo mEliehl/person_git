@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace Api.Test.Fakes.Repositories
 {
@@ -32,5 +33,43 @@ namespace Api.Test.Fakes.Repositories
                 return persons.ToList();
             });
         }
+
+        public Person GetById(int id)
+        {
+           return persons.LastOrDefault();
+        }
+
+        public Task<Person> GetByIdAsync(int id)
+        {
+            return Task<Person>.Factory.StartNew(() =>
+            {
+                return GetById(id);
+            });
+        }
+
+        public Task<int> Remove(int id)
+        {
+            return Remove(GetById(id));
+        }
+
+        public Task<int> Remove(Person person)
+        {
+            return Task<int>.Factory.StartNew(() =>
+            {
+                persons.Remove(person);
+                return 0;
+            });
+        }
+
+        public Task<int> Update(Person person, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Task<int>.Factory.StartNew(() =>
+            {
+                persons.Remove(person);
+                persons.Add(person);
+                return 0;
+            });
+        }
     }
 }
+

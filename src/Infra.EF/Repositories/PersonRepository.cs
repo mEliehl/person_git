@@ -2,11 +2,9 @@
 using Domain.Repositories;
 using Microsoft.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Infra.EF.Contexts;
 
 namespace Infra.EF.Repositories
 {
@@ -25,9 +23,38 @@ namespace Infra.EF.Repositories
             return context.SaveChangesAsync(cancellationToken);
         }
 
+        public Task<int> Update(Person person, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            context.Set<Person>().Attach(person);
+            context.Entry(person).State = EntityState.Modified;
+            return context.SaveChangesAsync(cancellationToken);
+        }
+
+        public Task<int> Remove(int id)
+        {
+            var person = GetById(id);
+            return Remove(person);
+        }
+
+        public Task<int> Remove(Person person)
+        {
+            context.Remove(person);
+            return context.SaveChangesAsync();
+        }
+
         public Task<List<Person>> Get(CancellationToken cancellationToken = default(CancellationToken))
         {
             return context.Set<Person>().ToListAsync(cancellationToken);
+        }
+
+        public Person GetById(int id)
+        {
+            return context.Set<Person>().FirstOrDefault(f => f.Id == id);
+        }
+
+        public Task<Person> GetByIdAsync(int id)
+        {
+            return context.Set<Person>().FirstOrDefaultAsync(f => f.Id == id);
         }
     }
 }
