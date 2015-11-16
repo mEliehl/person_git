@@ -8,6 +8,8 @@
     Person.$inject = ['$resource'];
 
     function Person($resource) {
-        return $resource('/api/person/:id');
+        return $resource('/api/person/:id', null, {
+            'update': { method: 'PUT' }
+        });
     }
 })();

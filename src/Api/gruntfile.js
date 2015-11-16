@@ -1,4 +1,5 @@
-﻿module.exports = function (grunt) {
+/// <binding ProjectOpened='default' />
+module.exports = function (grunt) {
     // load Grunt plugins from NPM
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
