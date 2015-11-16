@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 using System.Linq;
+using System;
 
 namespace Infra.EF.Test.Repositories
 {
@@ -23,7 +24,7 @@ namespace Infra.EF.Test.Repositories
         public async Task ShouldAddPersonAndCheckIfIdValid(string name,string email)
         {
             Person actual = await AddPerson(name, email);
-            Assert.True(actual.Id > 0);
+            Assert.NotEqual(Guid.Empty,actual.Id);
             Assert.Equal(name, actual.Name);
             Assert.Equal(email, actual.Email);
         }
@@ -37,7 +38,7 @@ namespace Infra.EF.Test.Repositories
 
             actual.ChangeName(newName);
             await personRepository.Update(actual);
-            Assert.True(actual.Id > 0);
+            Assert.NotEqual(Guid.Empty,actual.Id);
             Assert.Equal(newName, actual.Name);
             Assert.Equal(email, actual.Email);
         }

@@ -34,12 +34,12 @@ namespace Api.Test.Fakes.Repositories
             });
         }
 
-        public Person GetById(int id)
+        public Person GetById(Guid id)
         {
            return persons.LastOrDefault();
         }
 
-        public Task<Person> GetByIdAsync(int id)
+        public Task<Person> GetByIdAsync(Guid id)
         {
             return Task<Person>.Factory.StartNew(() =>
             {
@@ -47,7 +47,7 @@ namespace Api.Test.Fakes.Repositories
             });
         }
 
-        public Task<int> Remove(int id)
+        public Task<int> Remove(Guid id)
         {
             return Remove(GetById(id));
         }

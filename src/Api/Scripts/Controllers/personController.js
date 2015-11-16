@@ -29,7 +29,6 @@
 
     function PersonEditController($scope, $routeParams, $location, Person) {
         $scope.person = Person.get({ id: $routeParams.id });
-        console.log($scope.person);
         $scope.edit = function () {
             $scope.person.$update(function () {
                 $location.path('/');

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using System;
 using Xunit;
 
 namespace Domain.Test.Entities
@@ -14,7 +15,7 @@ namespace Domain.Test.Entities
 
             Assert.Equal(name, person.Name);
             Assert.Equal(email, person.Email);
-            Assert.Equal(0, person.Id);
+            Assert.NotEqual(Guid.Empty, person.Id);
         }
 
         [Theory]

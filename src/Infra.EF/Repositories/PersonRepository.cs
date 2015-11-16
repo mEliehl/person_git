@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace Infra.EF.Repositories
 {
@@ -30,7 +31,7 @@ namespace Infra.EF.Repositories
             return context.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<int> Remove(int id)
+        public Task<int> Remove(Guid id)
         {
             var person = GetById(id);
             return Remove(person);
@@ -47,12 +48,12 @@ namespace Infra.EF.Repositories
             return context.Set<Person>().ToListAsync(cancellationToken);
         }
 
-        public Person GetById(int id)
+        public Person GetById(Guid id)
         {
             return context.Set<Person>().FirstOrDefault(f => f.Id == id);
         }
 
-        public Task<Person> GetByIdAsync(int id)
+        public Task<Person> GetByIdAsync(Guid id)
         {
             return context.Set<Person>().FirstOrDefaultAsync(f => f.Id == id);
         }

@@ -3,6 +3,7 @@ using Api.Test.Fakes.Repositories;
 using Api.ViewModels.Person;
 using Domain.Entities;
 using Microsoft.AspNet.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -68,7 +69,7 @@ namespace Api.Test.Controller
         {
             await AddPerson(name, email);
 
-            var actual = await personController.Delete(0) as HttpStatusCodeResult;
+            var actual = await personController.Delete(Guid.Empty) as HttpStatusCodeResult;
             Assert.Equal((int)HttpStatusCode.OK, actual.StatusCode);
         }
 
@@ -79,7 +80,7 @@ namespace Api.Test.Controller
         {
             await AddPerson(name, email);
 
-            var actual = await personController.Get(0);
+            var actual = await personController.Get(Guid.Empty);
             Assert.Equal(name, actual.Name);
             Assert.Equal(email, actual.Email);
         }

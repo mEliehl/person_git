@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.AspNet.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -26,8 +27,8 @@ namespace Api.Controllers
         }
 
         // GET: api/{id}
-        [HttpGet("{id:int}")]
-        public async Task<Person> Get(int id)
+        [HttpGet("{id:Guid}")]
+        public async Task<Person> Get(Guid id)
         {
             return await personRepository.GetByIdAsync(id);
         }
@@ -53,8 +54,8 @@ namespace Api.Controllers
         }
 
         // Delete api/{id}
-        [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("{id:Guid}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
             await personRepository.Remove(id);
 
