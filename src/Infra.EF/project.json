@@ -8,8 +8,8 @@
 
   "dependencies": {
     "Domain": "",
-    "EntityFramework.Commands": "7.0.0-beta8",
-    "EntityFramework.InMemory": "7.0.0-beta8"
+    "EntityFramework.Commands": "7.0.0-rc1-final",
+    "EntityFramework.InMemory": "7.0.0-rc1-final"
   },
 
   "commands": {

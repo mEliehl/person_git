@@ -2,9 +2,10 @@
 using Infra.EF.Contexts;
 using Infra.EF.Repositories;
 using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.StaticFiles;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Api
 {
@@ -17,12 +18,13 @@ namespace Api
 
             services.AddScoped(typeof(DbContext), typeof(BaseContext));
             services.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
+
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
             app.UseIISPlatformHandler();
-
             app.UseMvc();
             app.UseStaticFiles();
             app.UseFileServer(new FileServerOptions()
@@ -30,5 +32,8 @@ namespace Api
                 EnableDirectoryBrowsing = true,
             });
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
