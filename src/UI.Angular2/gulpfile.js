@@ -39,7 +39,8 @@ var libs = [
 //region lib
 {
     gulp.task('libs', function () {
-        return gulp.src(libs).pipe(gulp.dest(paths.lib.dest));
+        return gulp.src(libs)
+            .pipe(gulp.dest(paths.lib.dest));
     });
 
     gulp.task('clean:libs', function (callback) {
