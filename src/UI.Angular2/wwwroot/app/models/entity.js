@@ -1,0 +1,1 @@
+System.register([],function(t){var n;return{setters:[],execute:function(){n=function(){function t(t){this.id=t}return t}(),t("Entity",n)}}});

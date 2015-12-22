@@ -7,6 +7,7 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 var gulp = require('gulp');
 var del = require('del');
 var typescript = require('gulp-typescript');
+var uglify = require('gulp-uglify');
 
 var paths = {
     lib: {
@@ -16,7 +17,8 @@ var paths = {
 
     typescript: {
         src: [
-            "./scripts/*.ts"
+            "./scripts/*.ts",
+            "./scripts/*/*.ts"
         ],
         dest: "./wwwroot/app/",
         config : "./scripts/tsconfig.json"
@@ -27,6 +29,7 @@ var tsconfig = typescript.createProject(paths.typescript.config);
 
 var libs = [
             paths.lib.npm + "angular2/bundles/angular2.min.js",
+            paths.lib.npm + "angular2/bundles/http.min.js",
             paths.lib.npm + "angular2/bundles/angular2-polyfills.min.js",
             paths.lib.npm + "rxjs/bundles/rx.min.js",
             paths.lib.npm + "es6-shim/es6-shim.min.js",
@@ -57,6 +60,7 @@ var libs = [
     gulp.task('build:typescript', function () {
         return gulp.src(paths.typescript.src)
 		.pipe(typescript(tsconfig))
+        .pipe(uglify())
 		.pipe(gulp.dest(paths.typescript.dest));
     });
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.StaticFiles;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 
 namespace Api
 {
@@ -13,17 +14,29 @@ namespace Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddCors();
+
+            services.AddMvc()
+            .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
+            });
+            
             services.AddDirectoryBrowser();
 
             services.AddScoped(typeof(DbContext), typeof(BaseContext));
             services.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
+            app.UseCors(builder =>
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
             app.UseIISPlatformHandler();
             app.UseMvc();
             app.UseStaticFiles();

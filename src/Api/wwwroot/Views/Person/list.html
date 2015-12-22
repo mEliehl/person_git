@@ -12,12 +12,12 @@
         <tbody>
             <tr ng-repeat="person in persons">
                 <td>
-                    <a href="/person/edit/{{person.Id}}" class="btn btn-default btn-xs">edit</a>
-                    <a href="/person/delete/{{person.Id}}" class="btn btn-danger btn-xs">delete</a>
+                    <a href="/person/edit/{{person.id}}" class="btn btn-default btn-xs">edit</a>
+                    <a href="/person/delete/{{person.id}}" class="btn btn-danger btn-xs">delete</a>
                 </td>
 
-                <td>{{person.Name}}</td>
-                <td>{{person.Email}}</td>
+                <td>{{person.name}}</td>
+                <td>{{person.email}}</td>
             </tr>
         </tbody>
     </table>

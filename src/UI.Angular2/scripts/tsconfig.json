@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
     "target": "es5",
-    "module": "commonjs",
-    
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "removeComments": false,
+    "noImplicitAny": true
   },
   "exclude": [
     "node_modules",

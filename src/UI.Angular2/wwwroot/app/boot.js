@@ -1,3 +1,1 @@
-var browser_1 = require('angular2/platform/browser');
-var app_component_1 = require('./app.component');
-browser_1.bootstrap(app_component_1.AppComponent);
+System.register(["angular2/platform/browser","angular2/http","./app.component"],function(t){var n,o,e;return{setters:[function(t){n=t},function(t){o=t},function(t){e=t}],execute:function(){n.bootstrap(e.AppComponent,o.HTTP_PROVIDERS)}}});
