@@ -12,13 +12,12 @@ var uglify = require('gulp-uglify');
 var paths = {
     lib: {
         npm: "./node_modules/",
-        dest: "./wwwroot/lib/",
+        dest: "./wwwroot/lib_package/",
     },
 
     typescript: {
         src: [
-            "./scripts/*.ts",
-            "./scripts/*/*.ts"
+            "./scripts/**/*.ts"
         ],
         dest: "./wwwroot/app/",
         config : "./scripts/tsconfig.json"
