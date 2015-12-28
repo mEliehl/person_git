@@ -17,10 +17,9 @@ export class AppComponent {
 
     getDate() {
         var data = this.http.get('http://localhost:60546/api/person')
-            .subscribe(persons => {
-                var retorno = persons.json();
-                for (var i = 0; i < retorno.length; i++) {
-                    var person = retorno[i];
+            .subscribe(response => {
+                var persons = response.json();
+                for (var person of persons) {
                     this.persons.push(new Person(person.id, person.name, person.email));
                 }
             });

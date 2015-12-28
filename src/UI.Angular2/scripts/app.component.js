@@ -31,10 +31,10 @@ System.register(["angular2/core", 'angular2/http', "./models/person"], function(
                 AppComponent.prototype.getDate = function () {
                     var _this = this;
                     var data = this.http.get('http://localhost:60546/api/person')
-                        .subscribe(function (persons) {
-                        var retorno = persons.json();
-                        for (var i = 0; i < retorno.length; i++) {
-                            var person = retorno[i];
+                        .subscribe(function (response) {
+                        var persons = response.json();
+                        for (var _i = 0; _i < persons.length; _i++) {
+                            var person = persons[_i];
                             _this.persons.push(new person_1.Person(person.id, person.name, person.email));
                         }
                     });

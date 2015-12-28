@@ -32,7 +32,9 @@ var libs = [
             paths.lib.npm + "angular2/bundles/angular2-polyfills.min.js",
             paths.lib.npm + "rxjs/bundles/rx.min.js",
             paths.lib.npm + "es6-shim/es6-shim.min.js",
-            paths.lib.npm + "systemjs/dist/system.js"
+            paths.lib.npm + "es6-shim/es6-shim.map",
+            paths.lib.npm + "systemjs/dist/system.js",
+            paths.lib.npm + "systemjs/dist/system-polyfills.js"
 ];
 
 //region lib
