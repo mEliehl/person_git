@@ -1,9 +1,21 @@
-System.register(['angular2/platform/browser', 'angular2/http', './app.component'], function(exports_1) {
-    var browser_1, http_1, app_component_1;
+System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router', 'angular2/http', './app.component'], function(exports_1) {
+    var __extends = (this && this.__extends) || function (d, b) {
+        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+    var core_1, browser_1, router_1, http_1, app_component_1;
+    var AppBaseRequestOptions;
     return {
         setters:[
+            function (core_1_1) {
+                core_1 = core_1_1;
+            },
             function (browser_1_1) {
                 browser_1 = browser_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -12,7 +24,17 @@ System.register(['angular2/platform/browser', 'angular2/http', './app.component'
                 app_component_1 = app_component_1_1;
             }],
         execute: function() {
-            browser_1.bootstrap(app_component_1.AppComponent, http_1.HTTP_PROVIDERS);
+            AppBaseRequestOptions = (function (_super) {
+                __extends(AppBaseRequestOptions, _super);
+                function AppBaseRequestOptions() {
+                    _super.apply(this, arguments);
+                    this.headers = new http_1.Headers({
+                        'Content-Type': 'application/json'
+                    });
+                }
+                return AppBaseRequestOptions;
+            })(http_1.BaseRequestOptions);
+            browser_1.bootstrap(app_component_1.AppComponent, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, core_1.provide(http_1.RequestOptions, { useClass: AppBaseRequestOptions })]);
         }
     }
 });

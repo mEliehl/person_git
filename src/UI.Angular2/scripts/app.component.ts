@@ -1,27 +1,22 @@
-﻿import {Component} from "angular2/core";
-import { Http,Response} from 'angular2/http';
-import {Person} from "./models/person"
+﻿import {Component} from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+
+import {ListPersonComponent}   from './components/person/listperson.component';
+import {AddPersonComponent}   from './components/person/addperson.component';
 
 @Component({
-    selector: "my-app",
-    templateUrl : "views/person/list.html"
+    selector: 'my-app',
+    template: `
+    <a [routerLink]="['ListPersonCenter']">Person</a>
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+  `,
+    directives: [ROUTER_DIRECTIVES]
 })
-export class AppComponent {
-    persons: Array<Person> = [];
-    http: Http;
 
-    constructor(http: Http) {
-        this.http = http;
-        this.getDate();
-    }
-
-    getDate() {
-        var data = this.http.get('http://localhost:60546/api/person')
-            .subscribe(response => {
-                var persons = response.json();
-                for (var person of persons) {
-                    this.persons.push(new Person(person.id, person.name, person.email));
-                }
-            });
-    }
-}
+@RouteConfig([
+        { path: '/person', name: 'ListPersonCenter', component: ListPersonComponent },
+        { path: '/person/add', name: 'AddPerson', component: AddPersonComponent}
+])
+export class AppComponent { }

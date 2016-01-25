@@ -50,7 +50,7 @@ namespace Api.Test.Controller
             
             var person = new AddUpdatePersonViewModel()
             {
-                Name = newName,
+                name = newName,
                 Email = email
             };
 
@@ -90,7 +90,7 @@ namespace Api.Test.Controller
         {
             var person = new AddUpdatePersonViewModel()
             {
-                Name = name,
+                name = name,
                 Email = email
             };
             return await personController.Post(person) ;

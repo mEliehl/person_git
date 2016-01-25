@@ -30,6 +30,7 @@ var libs = [
             paths.lib.npm + "angular2/bundles/angular2.min.js",
             paths.lib.npm + "angular2/bundles/http.min.js",
             paths.lib.npm + "angular2/bundles/angular2-polyfills.min.js",
+            paths.lib.npm + "angular2/bundles/router.min.js",
             paths.lib.npm + "rxjs/bundles/rx.min.js",
             paths.lib.npm + "es6-shim/es6-shim.min.js",
             paths.lib.npm + "es6-shim/es6-shim.map",

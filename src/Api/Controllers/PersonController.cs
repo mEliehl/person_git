@@ -37,7 +37,7 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]AddUpdatePersonViewModel viewModel)
         {
-            await personRepository.Add(new Person(viewModel.Name, viewModel.Email));
+            await personRepository.Add(new Person(viewModel.name, viewModel.Email));
             
             return new HttpStatusCodeResult((int)HttpStatusCode.OK);
         }
@@ -47,7 +47,7 @@ namespace Api.Controllers
         public async Task<IActionResult> Put([FromBody]AddUpdatePersonViewModel viewModel)
         {
             var person = await personRepository.GetByIdAsync(viewModel.Id);
-            person.ChangeName(viewModel.Name);
+            person.ChangeName(viewModel.name);
             await personRepository.Update(person);
 
             return new HttpStatusCodeResult((int)HttpStatusCode.OK);
