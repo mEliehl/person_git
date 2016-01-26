@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './components/person/listperson.component', './components/person/addperson.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './components/person/listperson.component', './components/person/addperson.component', './components/person/deletePerson.component', './components/person/editPerson.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', './components/person/listpe
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, listperson_component_1, addperson_component_1;
+    var core_1, router_1, listperson_component_1, addperson_component_1, deletePerson_component_1, editPerson_component_1;
     var AppComponent;
     return {
         setters:[
@@ -23,6 +23,12 @@ System.register(['angular2/core', 'angular2/router', './components/person/listpe
             },
             function (addperson_component_1_1) {
                 addperson_component_1 = addperson_component_1_1;
+            },
+            function (deletePerson_component_1_1) {
+                deletePerson_component_1 = deletePerson_component_1_1;
+            },
+            function (editPerson_component_1_1) {
+                editPerson_component_1 = editPerson_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -36,7 +42,9 @@ System.register(['angular2/core', 'angular2/router', './components/person/listpe
                     }),
                     router_1.RouteConfig([
                         { path: '/person', name: 'ListPersonCenter', component: listperson_component_1.ListPersonComponent },
-                        { path: '/person/add', name: 'AddPerson', component: addperson_component_1.AddPersonComponent }
+                        { path: '/person/add', name: 'AddPerson', component: addperson_component_1.AddPersonComponent },
+                        { path: '/person/delete/:id', name: 'DeletePerson', component: deletePerson_component_1.DeletePersonComponent },
+                        { path: '/person/edit/:id', name: 'EditPerson', component: editPerson_component_1.EditPersonComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

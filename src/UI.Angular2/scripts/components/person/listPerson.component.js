@@ -44,7 +44,7 @@ System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../mod
                 };
                 ListPersonComponent = __decorate([
                     core_1.Component({
-                        templateUrl: "views/person/list.html",
+                        templateUrl: "views/person/listPerson.html",
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [http_1.Http])

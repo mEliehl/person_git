@@ -9,7 +9,7 @@ System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../mod
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, router_1, http_1, person_1;
-    var AddPersonComponent;
+    var DeletePersonComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -25,28 +25,36 @@ System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../mod
                 person_1 = person_1_1;
             }],
         execute: function() {
-            AddPersonComponent = (function () {
-                function AddPersonComponent(http, router) {
-                    this.http = http;
-                    this.router = router;
-                    this.person = new person_1.Person("", "", "");
-                }
-                AddPersonComponent.prototype.onSubmit = function () {
+            DeletePersonComponent = (function () {
+                function DeletePersonComponent(http, routeParams, router) {
                     var _this = this;
-                    this.http.post('http://localhost:60546/api/person', JSON.stringify(this.person))
-                        .subscribe(function (data) { _this.router.navigate(['ListPersonCenter']); });
+                    this.person = new person_1.Person("", "", "");
+                    this.http = http;
+                    this.routeParams = routeParams;
+                    this.router = router;
+                    var url = 'http://localhost:60546/api/person/' + this.routeParams.get('id');
+                    this.http.get(url)
+                        .subscribe(function (data) {
+                        var p = data.json();
+                        _this.person = new person_1.Person(p.id, p.name, p.email);
+                    });
+                }
+                DeletePersonComponent.prototype.onRemove = function () {
+                    var _this = this;
+                    var url = 'http://localhost:60546/api/person/' + this.routeParams.get('id');
+                    this.http.delete(url).subscribe(function (data) { _this.router.navigate(['ListPersonCenter']); });
                 };
-                AddPersonComponent = __decorate([
+                DeletePersonComponent = __decorate([
                     core_1.Component({
-                        templateUrl: "views/person/add.html",
+                        templateUrl: "views/person/delete.html",
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [http_1.Http, router_1.Router])
-                ], AddPersonComponent);
-                return AddPersonComponent;
+                    __metadata('design:paramtypes', [http_1.Http, router_1.RouteParams, router_1.Router])
+                ], DeletePersonComponent);
+                return DeletePersonComponent;
             })();
-            exports_1("AddPersonComponent", AddPersonComponent);
+            exports_1("DeletePersonComponent", DeletePersonComponent);
         }
     }
 });
-//# sourceMappingURL=addPerson.component.js.map
+//# sourceMappingURL=deletePerson.component.js.map

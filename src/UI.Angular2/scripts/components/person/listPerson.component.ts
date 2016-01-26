@@ -5,7 +5,7 @@ import {Person} from "../../models/person"
 import {AddPersonComponent} from "./addPerson.component"
 
 @Component({
-    templateUrl: "views/person/list.html",
+    templateUrl: "views/person/listPerson.html",
     directives: [ROUTER_DIRECTIVES]
 })
 export class ListPersonComponent {
