@@ -1,4 +1,4 @@
-System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../models/person"], function(exports_1) {
+System.register(["angular2/core", 'angular2/router', "../../models/person", "../../services/personService"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../mod
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, person_1;
+    var core_1, router_1, person_1, personService_1;
     var EditPersonComponent;
     return {
         setters:[
@@ -18,30 +18,31 @@ System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../mod
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (http_1_1) {
-                http_1 = http_1_1;
-            },
             function (person_1_1) {
                 person_1 = person_1_1;
+            },
+            function (personService_1_1) {
+                personService_1 = personService_1_1;
             }],
         execute: function() {
             EditPersonComponent = (function () {
-                function EditPersonComponent(http, routeParams, router) {
-                    var _this = this;
-                    this.person = new person_1.Person("", "", "");
-                    this.http = http;
+                function EditPersonComponent(routeParams, router, personService) {
                     this.routeParams = routeParams;
                     this.router = router;
-                    var url = 'http://localhost:60546/api/person/' + this.routeParams.get('id');
-                    this.http.get(url)
-                        .subscribe(function (data) {
-                        var p = data.json();
-                        _this.person = new person_1.Person(p.id, p.name, p.email);
-                    });
+                    this.personService = personService;
+                    this.person = new person_1.Person("", "", "");
+                    this.getDate(this.routeParams.get('id'));
                 }
+                EditPersonComponent.prototype.getDate = function (id) {
+                    var _this = this;
+                    this.personService.getPerson(id)
+                        .subscribe(function (response) {
+                        _this.person = new person_1.Person(response.id, response.name, response.email);
+                    }, function (error) { return console.error('Error: ' + error); });
+                };
                 EditPersonComponent.prototype.onSubmit = function () {
                     var _this = this;
-                    this.http.put('http://localhost:60546/api/person', JSON.stringify(this.person))
+                    this.personService.editPerson(this.person)
                         .subscribe(function (data) { _this.router.navigate(['ListPersonCenter']); });
                 };
                 EditPersonComponent = __decorate([
@@ -49,7 +50,7 @@ System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../mod
                         templateUrl: "views/person/edit.html",
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [http_1.Http, router_1.RouteParams, router_1.Router])
+                    __metadata('design:paramtypes', [router_1.RouteParams, router_1.Router, personService_1.PersonService])
                 ], EditPersonComponent);
                 return EditPersonComponent;
             })();

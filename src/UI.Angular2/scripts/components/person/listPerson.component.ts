@@ -1,8 +1,9 @@
 ﻿import {Component} from "angular2/core";
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Http,Response} from 'angular2/http';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {Person} from "../../models/person"
-import {AddPersonComponent} from "./addPerson.component"
+import {DataService} from "../../services/dataService"
+import {PersonService} from "../../services/personService"
+
 
 @Component({
     templateUrl: "views/person/listPerson.html",
@@ -10,20 +11,22 @@ import {AddPersonComponent} from "./addPerson.component"
 })
 export class ListPersonComponent {
     persons: Array<Person> = [];
-    http: Http;
+    private personService: PersonService;
 
-    constructor(http: Http) {
-        this.http = http;
+    constructor(personService: PersonService) {
+        this.personService = personService;
+
         this.getDate();
     }
 
-    getDate() {
-        var data = this.http.get('http://localhost:60546/api/person')
-            .subscribe(response => {
-                var persons = response.json();
-                for (var person of persons) {
-                    this.persons.push(new Person(person.id, person.name, person.email));
-                }
-            });
+    private getDate() {
+        this.personService.getListPerson()
+            .subscribe(persons => {
+            for (var person of persons) {
+                this.persons.push(new Person(person.id, person.name, person.email));
+            }
+        },
+        error => console.error('Error: ' + error)
+        );
     }
 }

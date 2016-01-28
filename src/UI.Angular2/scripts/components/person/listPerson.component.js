@@ -1,4 +1,4 @@
-System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../models/person"], function(exports_1) {
+System.register(["angular2/core", 'angular2/router', "../../models/person", "../../services/personService"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../mod
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, person_1;
+    var core_1, router_1, person_1, personService_1;
     var ListPersonComponent;
     return {
         setters:[
@@ -18,36 +18,35 @@ System.register(["angular2/core", 'angular2/router', 'angular2/http', "../../mod
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (http_1_1) {
-                http_1 = http_1_1;
-            },
             function (person_1_1) {
                 person_1 = person_1_1;
+            },
+            function (personService_1_1) {
+                personService_1 = personService_1_1;
             }],
         execute: function() {
             ListPersonComponent = (function () {
-                function ListPersonComponent(http) {
+                function ListPersonComponent(personService) {
                     this.persons = [];
-                    this.http = http;
+                    this.personService = personService;
                     this.getDate();
                 }
                 ListPersonComponent.prototype.getDate = function () {
                     var _this = this;
-                    var data = this.http.get('http://localhost:60546/api/person')
-                        .subscribe(function (response) {
-                        var persons = response.json();
+                    this.personService.getListPerson()
+                        .subscribe(function (persons) {
                         for (var _i = 0; _i < persons.length; _i++) {
                             var person = persons[_i];
                             _this.persons.push(new person_1.Person(person.id, person.name, person.email));
                         }
-                    });
+                    }, function (error) { return console.error('Error: ' + error); });
                 };
                 ListPersonComponent = __decorate([
                     core_1.Component({
                         templateUrl: "views/person/listPerson.html",
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [http_1.Http])
+                    __metadata('design:paramtypes', [personService_1.PersonService])
                 ], ListPersonComponent);
                 return ListPersonComponent;
             })();

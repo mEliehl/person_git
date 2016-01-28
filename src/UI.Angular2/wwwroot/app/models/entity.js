@@ -1,1 +1,1 @@
-System.register([],function(t){var n;return{setters:[],execute:function(){n=function(){function t(t){this.id=""==t?"00000000-0000-0000-0000-000000000000":t}return t}(),t("Entity",n)}}});
+System.register(["../common/constants"],function(t){var n,e;return{setters:[function(t){n=t}],execute:function(){e=function(){function t(t){this.id=""==t?n.Constant.EMPTY_GUID:t}return t}(),t("Entity",e)}}});

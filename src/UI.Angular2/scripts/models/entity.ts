@@ -1,7 +1,9 @@
-﻿export class Entity {
+﻿import {Constant} from "../common/constants"
+
+export class Entity {
     id: any;
 
     constructor(id: string) {
-        this.id = id == "" ? "00000000-0000-0000-0000-000000000000" : id;
+        this.id = id == "" ? Constant.EMPTY_GUID : id;
     }
 }
