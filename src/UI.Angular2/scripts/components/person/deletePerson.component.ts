@@ -35,7 +35,7 @@ export class DeletePersonComponent implements OnInit  {
     }
 
     onRemove() {
-        var id = this.person.id;
+        let id = this.person.id;
         this.personService.deletePerson(id).subscribe(data => { this.router.navigate(['ListPersonCenter']); });
     }
 }

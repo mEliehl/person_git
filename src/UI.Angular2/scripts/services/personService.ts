@@ -16,7 +16,7 @@ export class PersonService {
             .map(resource => {
                 let persons: Person[] = [];
                 let data = resource.json();
-                for (var person of data) {
+                for (let person of data) {
                     persons.push(new Person(person.id, person.name, person.email));
                 }
                 return persons;
@@ -26,7 +26,7 @@ export class PersonService {
     getPerson(id : any) {
         return this.dataService.get(this.resource, id)
             .map(resource => {
-                var data = resource.json()
+                let data = resource.json()
                 return new Person(data.id, data.name, data.email);
             });
     }
