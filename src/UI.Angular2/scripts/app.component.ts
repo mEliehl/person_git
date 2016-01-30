@@ -18,7 +18,7 @@ import {EditPersonComponent}   from './components/person/editPerson.component';
 })
 
 @RouteConfig([
-        { path: '/person', name: 'ListPersonCenter', component: ListPersonComponent },
+        { path: '/person', name: 'ListPersonCenter', component: ListPersonComponent, useAsDefault: true },
         { path: '/person/add', name: 'AddPerson', component: AddPersonComponent },
         { path: '/person/delete/:id', name: 'DeletePerson', component: DeletePersonComponent },
         { path: '/person/edit/:id', name: 'EditPerson', component: EditPersonComponent }

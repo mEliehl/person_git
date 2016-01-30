@@ -1,4 +1,4 @@
-﻿import {Component} from "angular2/core";
+﻿import {Component, OnInit} from "angular2/core";
 import {Router,RouteConfig, ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 import {Person} from "../../models/person"
 import {PersonService} from "../../services/personService"
@@ -8,7 +8,7 @@ import {PersonService} from "../../services/personService"
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class DeletePersonComponent {
+export class DeletePersonComponent implements OnInit  {
     person: Person;
     private router: Router;
     private routeParams: RouteParams;
@@ -20,15 +20,16 @@ export class DeletePersonComponent {
         this.routeParams = routeParams;
         this.router = router;
         this.personService = personService;
+    }
 
-        this.person = new Person("", "", "");
+    ngOnInit() {
         this.getDate(this.routeParams.get('id'));
     }
 
     private getDate(id: any) {
         this.personService.getPerson(id)
             .subscribe(response => {
-                this.person = new Person(response.id, response.name, response.email);
+                this.person = response;
             },
             error => console.error('Error: ' + error));
     }

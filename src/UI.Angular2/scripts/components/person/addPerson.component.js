@@ -29,8 +29,10 @@ System.register(["angular2/core", 'angular2/router', "../../models/person", "../
                 function AddPersonComponent(router, personService) {
                     this.router = router;
                     this.personService = personService;
-                    this.person = new person_1.Person("", "", "");
                 }
+                AddPersonComponent.prototype.ngOnInit = function () {
+                    this.person = new person_1.Person("", "", "");
+                };
                 AddPersonComponent.prototype.onSubmit = function () {
                     var _this = this;
                     this.personService.addPerson(this.person)

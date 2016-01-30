@@ -1,4 +1,4 @@
-System.register(["angular2/core", 'angular2/router', "../../models/person", "../../services/personService"], function(exports_1) {
+System.register(["angular2/core", 'angular2/router', "../../services/personService"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", 'angular2/router', "../../models/person", "../
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, person_1, personService_1;
+    var core_1, router_1, personService_1;
     var EditPersonComponent;
     return {
         setters:[
@@ -17,9 +17,6 @@ System.register(["angular2/core", 'angular2/router', "../../models/person", "../
             },
             function (router_1_1) {
                 router_1 = router_1_1;
-            },
-            function (person_1_1) {
-                person_1 = person_1_1;
             },
             function (personService_1_1) {
                 personService_1 = personService_1_1;
@@ -30,14 +27,15 @@ System.register(["angular2/core", 'angular2/router', "../../models/person", "../
                     this.routeParams = routeParams;
                     this.router = router;
                     this.personService = personService;
-                    this.person = new person_1.Person("", "", "");
-                    this.getDate(this.routeParams.get('id'));
                 }
+                EditPersonComponent.prototype.ngOnInit = function () {
+                    this.getDate(this.routeParams.get('id'));
+                };
                 EditPersonComponent.prototype.getDate = function (id) {
                     var _this = this;
                     this.personService.getPerson(id)
                         .subscribe(function (response) {
-                        _this.person = new person_1.Person(response.id, response.name, response.email);
+                        _this.person = response;
                     }, function (error) { return console.error('Error: ' + error); });
                 };
                 EditPersonComponent.prototype.onSubmit = function () {

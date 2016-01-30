@@ -1,4 +1,4 @@
-System.register(['angular2/core', './dataService'], function(exports_1) {
+System.register(['angular2/core', './dataService', "../models/person"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './dataService'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, dataService_1;
+    var core_1, dataService_1, person_1;
     var PersonService;
     return {
         setters:[
@@ -17,6 +17,9 @@ System.register(['angular2/core', './dataService'], function(exports_1) {
             },
             function (dataService_1_1) {
                 dataService_1 = dataService_1_1;
+            },
+            function (person_1_1) {
+                person_1 = person_1_1;
             }],
         execute: function() {
             PersonService = (function () {
@@ -29,11 +32,24 @@ System.register(['angular2/core', './dataService'], function(exports_1) {
                     configurable: true
                 });
                 ;
-                PersonService.prototype.getListPerson = function () {
-                    return this.dataService.get(this.resource);
+                PersonService.prototype.getPersons = function () {
+                    return this.dataService.get(this.resource)
+                        .map(function (resource) {
+                        var persons = [];
+                        var data = resource.json();
+                        for (var _i = 0; _i < data.length; _i++) {
+                            var person = data[_i];
+                            persons.push(new person_1.Person(person.id, person.name, person.email));
+                        }
+                        return persons;
+                    });
                 };
                 PersonService.prototype.getPerson = function (id) {
-                    return this.dataService.get(this.resource, id);
+                    return this.dataService.get(this.resource, id)
+                        .map(function (resource) {
+                        var data = resource.json();
+                        return new person_1.Person(data.id, data.name, data.email);
+                    });
                 };
                 PersonService.prototype.addPerson = function (person) {
                     return this.dataService.post(this.resource, person);

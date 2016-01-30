@@ -41,7 +41,7 @@ System.register(['angular2/core', 'angular2/router', './components/person/listpe
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
-                        { path: '/person', name: 'ListPersonCenter', component: listperson_component_1.ListPersonComponent },
+                        { path: '/person', name: 'ListPersonCenter', component: listperson_component_1.ListPersonComponent, useAsDefault: true },
                         { path: '/person/add', name: 'AddPerson', component: addperson_component_1.AddPersonComponent },
                         { path: '/person/delete/:id', name: 'DeletePerson', component: deletePerson_component_1.DeletePersonComponent },
                         { path: '/person/edit/:id', name: 'EditPerson', component: editPerson_component_1.EditPersonComponent }

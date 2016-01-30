@@ -1,4 +1,4 @@
-System.register(["angular2/core", 'angular2/router', "../../models/person", "../../services/personService"], function(exports_1) {
+System.register(["angular2/core", 'angular2/router', "../../services/personService"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", 'angular2/router', "../../models/person", "../
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, person_1, personService_1;
+    var core_1, router_1, personService_1;
     var ListPersonComponent;
     return {
         setters:[
@@ -18,35 +18,40 @@ System.register(["angular2/core", 'angular2/router', "../../models/person", "../
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (person_1_1) {
-                person_1 = person_1_1;
-            },
             function (personService_1_1) {
                 personService_1 = personService_1_1;
             }],
         execute: function() {
             ListPersonComponent = (function () {
-                function ListPersonComponent(personService) {
+                function ListPersonComponent(personService, router) {
                     this.persons = [];
                     this.personService = personService;
-                    this.getDate();
+                    this.router = router;
                 }
+                ListPersonComponent.prototype.ngOnInit = function () {
+                    this.getDate();
+                };
                 ListPersonComponent.prototype.getDate = function () {
                     var _this = this;
-                    this.personService.getListPerson()
+                    this.personService.getPersons()
                         .subscribe(function (persons) {
-                        for (var _i = 0; _i < persons.length; _i++) {
-                            var person = persons[_i];
-                            _this.persons.push(new person_1.Person(person.id, person.name, person.email));
-                        }
+                        _this.persons = persons;
                     }, function (error) { return console.error('Error: ' + error); });
+                };
+                ListPersonComponent.prototype.edit = function (person) {
+                    this.router.navigate(['EditPerson', { id: person.id }]);
+                };
+                ListPersonComponent.prototype.delete = function (person) {
+                    this.router.navigate(['DeletePerson', { id: person.id }]);
+                };
+                ListPersonComponent.prototype.add = function () {
+                    this.router.navigate(['AddPerson']);
                 };
                 ListPersonComponent = __decorate([
                     core_1.Component({
-                        templateUrl: "views/person/listPerson.html",
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        templateUrl: "views/person/list.html",
                     }), 
-                    __metadata('design:paramtypes', [personService_1.PersonService])
+                    __metadata('design:paramtypes', [personService_1.PersonService, router_1.Router])
                 ], ListPersonComponent);
                 return ListPersonComponent;
             })();

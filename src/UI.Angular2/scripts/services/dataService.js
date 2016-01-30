@@ -36,7 +36,7 @@ System.register(['angular2/http', 'angular2/core', "../common/constants"], funct
                     var uri = this.baseURI + resource;
                     if (id)
                         uri += "/" + id;
-                    return this.http.get(uri).map(function (resource) { return resource.json(); });
+                    return this.http.get(uri);
                 };
                 DataService.prototype.post = function (resource, model) {
                     var uri = this.baseURI + resource;

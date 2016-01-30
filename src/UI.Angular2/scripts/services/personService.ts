@@ -11,12 +11,24 @@ export class PersonService {
         this.dataService = dataService;
     }
 
-    getListPerson() {
-        return this.dataService.get(this.resource);
+    getPersons() {
+        return this.dataService.get(this.resource)
+            .map(resource => {
+                let persons: Person[] = [];
+                let data = resource.json();
+                for (var person of data) {
+                    persons.push(new Person(person.id, person.name, person.email));
+                }
+                return persons;
+            });
     }
 
     getPerson(id : any) {
-        return this.dataService.get(this.resource,id);
+        return this.dataService.get(this.resource, id)
+            .map(resource => {
+                var data = resource.json()
+                return new Person(data.id, data.name, data.email);
+            });
     }
 
     addPerson(person: Person) {
