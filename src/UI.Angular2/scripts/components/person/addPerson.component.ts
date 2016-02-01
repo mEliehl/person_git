@@ -1,6 +1,6 @@
 ﻿import {Component, OnInit} from "angular2/core";
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Http, Response} from 'angular2/http';
+import {Response} from 'angular2/http';
 import {Person} from "../../models/person"
 import {PersonService} from "../../services/personService"
 
@@ -8,7 +8,7 @@ import {PersonService} from "../../services/personService"
     templateUrl: "views/person/add.html",
     directives: [ROUTER_DIRECTIVES]
 })
-export class AddPersonComponent implements OnInit {
+export class AddPersonComponent implements OnInit{
     person: Person;
     private router: Router;
     private personService: PersonService;

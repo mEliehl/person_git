@@ -1,1 +1,60 @@
-System.register(["angular2/core","angular2/router","../../services/personService"],function(e){var t,r,n,o,i=this&&this.__decorate||function(e,t,r,n){var o,i=arguments.length,s=3>i?t:null===n?n=Object.getOwnPropertyDescriptor(t,r):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,r,n);else for(var c=e.length-1;c>=0;c--)(o=e[c])&&(s=(3>i?o(s):i>3?o(t,r,s):o(t,r))||s);return i>3&&s&&Object.defineProperty(t,r,s),s},s=this&&this.__metadata||function(e,t){return"object"==typeof Reflect&&"function"==typeof Reflect.metadata?Reflect.metadata(e,t):void 0};return{setters:[function(e){t=e},function(e){r=e},function(e){n=e}],execute:function(){o=function(){function e(e,t,r){this.routeParams=e,this.router=t,this.personService=r}return e.prototype.ngOnInit=function(){this.getDate(this.routeParams.get("id"))},e.prototype.getDate=function(e){var t=this;this.personService.getPerson(e).subscribe(function(e){t.person=e},function(e){return console.error("Error: "+e)})},e.prototype.onSubmit=function(){var e=this;this.personService.editPerson(this.person).subscribe(function(t){e.router.navigate(["ListPersonCenter"])})},e=i([t.Component({templateUrl:"views/person/edit.html",directives:[r.ROUTER_DIRECTIVES]}),s("design:paramtypes",[r.RouteParams,r.Router,n.PersonService])],e)}(),e("EditPersonComponent",o)}}});
+System.register(["angular2/core", 'angular2/router', "../../services/personService"], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    var core_1, router_1, personService_1;
+    var EditPersonComponent;
+    return {
+        setters:[
+            function (core_1_1) {
+                core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (personService_1_1) {
+                personService_1 = personService_1_1;
+            }],
+        execute: function() {
+            EditPersonComponent = (function () {
+                function EditPersonComponent(routeParams, router, personService) {
+                    this.routeParams = routeParams;
+                    this.router = router;
+                    this.personService = personService;
+                }
+                EditPersonComponent.prototype.ngOnInit = function () {
+                    this.getDate(this.routeParams.get('id'));
+                };
+                EditPersonComponent.prototype.getDate = function (id) {
+                    var _this = this;
+                    this.personService.getPerson(id)
+                        .subscribe(function (response) {
+                        _this.person = response;
+                    }, function (error) { return console.error('Error: ' + error); });
+                };
+                EditPersonComponent.prototype.onSubmit = function () {
+                    var _this = this;
+                    this.personService.editPerson(this.person)
+                        .subscribe(function (data) { _this.router.navigate(['ListPersonCenter']); });
+                };
+                EditPersonComponent = __decorate([
+                    core_1.Component({
+                        templateUrl: "views/person/edit.html",
+                        directives: [router_1.ROUTER_DIRECTIVES]
+                    }), 
+                    __metadata('design:paramtypes', [router_1.RouteParams, router_1.Router, personService_1.PersonService])
+                ], EditPersonComponent);
+                return EditPersonComponent;
+            }());
+            exports_1("EditPersonComponent", EditPersonComponent);
+        }
+    }
+});

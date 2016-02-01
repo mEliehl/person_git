@@ -63,7 +63,7 @@ var libs = [
     gulp.task('build:typescript', function () {
         return gulp.src(paths.typescript.src)
 		.pipe(typescript(tsconfig))
-        .pipe(uglify())
+        //.pipe(uglify())
 		.pipe(gulp.dest(paths.typescript.dest));
     });
 }

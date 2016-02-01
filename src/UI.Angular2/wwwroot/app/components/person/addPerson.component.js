@@ -1,1 +1,55 @@
-System.register(["angular2/core","angular2/router","../../models/person","../../services/personService"],function(e){var t,n,r,o,i,s=this&&this.__decorate||function(e,t,n,r){var o,i=arguments.length,s=3>i?t:null===r?r=Object.getOwnPropertyDescriptor(t,n):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,n,r);else for(var c=e.length-1;c>=0;c--)(o=e[c])&&(s=(3>i?o(s):i>3?o(t,n,s):o(t,n))||s);return i>3&&s&&Object.defineProperty(t,n,s),s},c=this&&this.__metadata||function(e,t){return"object"==typeof Reflect&&"function"==typeof Reflect.metadata?Reflect.metadata(e,t):void 0};return{setters:[function(e){t=e},function(e){n=e},function(e){r=e},function(e){o=e}],execute:function(){i=function(){function e(e,t){this.router=e,this.personService=t}return e.prototype.ngOnInit=function(){this.person=new r.Person("","","")},e.prototype.onSubmit=function(){var e=this;this.personService.addPerson(this.person).subscribe(function(t){e.router.navigate(["ListPersonCenter"])})},e=s([t.Component({templateUrl:"views/person/add.html",directives:[n.ROUTER_DIRECTIVES]}),c("design:paramtypes",[n.Router,o.PersonService])],e)}(),e("AddPersonComponent",i)}}});
+System.register(["angular2/core", 'angular2/router', "../../models/person", "../../services/personService"], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    var core_1, router_1, person_1, personService_1;
+    var AddPersonComponent;
+    return {
+        setters:[
+            function (core_1_1) {
+                core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (person_1_1) {
+                person_1 = person_1_1;
+            },
+            function (personService_1_1) {
+                personService_1 = personService_1_1;
+            }],
+        execute: function() {
+            AddPersonComponent = (function () {
+                function AddPersonComponent(router, personService) {
+                    this.router = router;
+                    this.personService = personService;
+                }
+                AddPersonComponent.prototype.ngOnInit = function () {
+                    this.person = new person_1.Person("", "", "");
+                };
+                AddPersonComponent.prototype.onSubmit = function () {
+                    var _this = this;
+                    this.personService.addPerson(this.person)
+                        .subscribe(function (data) { _this.router.navigate(['ListPersonCenter']); });
+                };
+                AddPersonComponent = __decorate([
+                    core_1.Component({
+                        templateUrl: "views/person/add.html",
+                        directives: [router_1.ROUTER_DIRECTIVES]
+                    }), 
+                    __metadata('design:paramtypes', [router_1.Router, personService_1.PersonService])
+                ], AddPersonComponent);
+                return AddPersonComponent;
+            }());
+            exports_1("AddPersonComponent", AddPersonComponent);
+        }
+    }
+});

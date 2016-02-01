@@ -1,1 +1,21 @@
-System.register(["../common/constants"],function(t){var n,e;return{setters:[function(t){n=t}],execute:function(){e=function(){function t(t){this.id=""==t?n.Constant.EMPTY_GUID:t}return t}(),t("Entity",e)}}});
+System.register(["../common/constants"], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var constants_1;
+    var Entity;
+    return {
+        setters:[
+            function (constants_1_1) {
+                constants_1 = constants_1_1;
+            }],
+        execute: function() {
+            Entity = (function () {
+                function Entity(id) {
+                    this.id = id == "" ? constants_1.Constant.EMPTY_GUID : id;
+                }
+                return Entity;
+            }());
+            exports_1("Entity", Entity);
+        }
+    }
+});

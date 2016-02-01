@@ -1,7 +1,7 @@
 ﻿<h1>Edit Person</h1>
 <div class="row"  *ngIf ="person">
     <div class="col-md-6">
-        <form>
+        <form (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="Name">Name</label>
                 <input name="name" type="text" class="form-control" placeholder="Enter name"
@@ -13,7 +13,7 @@
                        [(ngModel)]="person.email">
             </div>
             <a [routerLink]="['ListPersonCenter']" class="btn btn-default">Cancel</a>
-            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 </div>
