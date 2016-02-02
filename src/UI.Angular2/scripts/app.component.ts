@@ -10,7 +10,7 @@ import {EditPersonComponent}   from './components/person/editPerson.component';
     selector: 'my-app',
     template: `
     <a [routerLink]="['ListPersonCenter']">Person</a>
-    <div class="container-fluid">
+    <div class="container">
         <router-outlet></router-outlet>
     </div>
   `,

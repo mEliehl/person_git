@@ -1,19 +1,21 @@
 ﻿<h1>Add Person</h1>
 <div class="row">
-    <div class="col-md-6">
-        <form (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="Name">Name</label>
-                <input name="name" type="text" class="form-control" placeholder="Enter name"
-                        [(ngModel)]="person.name">
-            </div>
-            <div class="form-group">
-                <label for="Email">e-mail</label>
-                <input name="email" type="text" class="form-control" placeholder="Enter e-mail"
-                        [(ngModel)]="person.email">
-            </div>
-            <a [routerLink]="['ListPersonCenter']" class="btn btn-default">Cancel</a>
-            <button type="submit" class="btn btn-primary">Save</button>
-        </form>
-    </div>
+    <form class="col s12" (ngSubmit)="onSubmit()">
+        <div class="input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" type="text" [(ngModel)]="person.name" class="validate">
+            <label class="active"  for="Name">Name</label>
+        </div>
+        <div class="input-field">
+            <i class="material-icons prefix">email_circle</i>
+            <input id="email" type="text" [(ngModel)]="person.email" class="validate">
+            <label class="active" for="Email">e-mail</label>
+        </div>
+        <a [routerLink]="['ListPersonCenter']" class="btn-floating btn-large waves-effect waves-light btn red darken-3">
+            <i class="material-icons left">undo</i>
+        </a>
+        <button type="submit" class="btn-floating btn-large waves-effect waves-light btn">
+            <i class="material-icons left">save</i>
+        </button>
+    </form>
 </div>
