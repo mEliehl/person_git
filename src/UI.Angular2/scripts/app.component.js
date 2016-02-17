@@ -37,7 +37,7 @@ System.register(['angular2/core', 'angular2/router', './components/person/listpe
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <a [routerLink]=\"['ListPersonCenter']\">Person</a>\n    <div class=\"container-fluid\">\n        <router-outlet></router-outlet>\n    </div>\n  ",
+                        template: "\n    <a [routerLink]=\"['ListPersonCenter']\">Person</a>\n    <div class=\"container\">\n        <router-outlet></router-outlet>\n    </div>\n  ",
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
