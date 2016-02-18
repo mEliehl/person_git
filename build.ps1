@@ -19,10 +19,10 @@ $DNU = "dnu"
 $DNVM = "dnvm"
 
 # ensure the correct version
-& $DNVM install 1.0.0-rc1-final
+& $DNVM install 1.0.0-rc1-final -r coreclr
 
 # use the correct version
-& $DNVM use 1.0.0-rc1-final
+& $DNVM use 1.0.0-rc1-final -r coreclr
 
 # Make sure we don't have a release folder for this version already
 $BuildFolder = Join-Path -Path $SolutionRoot -ChildPath "build";
