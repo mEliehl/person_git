@@ -34,7 +34,7 @@ if ((Get-Item $ReleaseFolder -ErrorAction SilentlyContinue) -ne $null)
 }
 
 # Set the version number in package.json
-$ProjectJsonPath = Join-Path -Path $SolutionRoot -ChildPath "src\Api\project.json"
+$ProjectJsonPath = Join-Path -Path $SolutionRoot -ChildPath "src\Domain\project.json"
 (gc -Path $ProjectJsonPath) `
 	-replace "(?<=`"version`":\s`")[.\w-]*(?=`",)", "$ReleaseVersionNumber$PreReleaseName" |
 	sc -Path $ProjectJsonPath -Encoding UTF8
