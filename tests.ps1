@@ -1,10 +1,6 @@
 $PSScriptFilePath = (Get-Item $MyInvocation.MyCommand.Path).FullName
 
 " PSScriptFilePath = $PSScriptFilePath"
-
-$SolutionRoot = Split-Path -Path $PSScriptFilePath -Parent
-$TestsFolder = Join-Path -Path $SolutionRoot -ChildPath "test\Domain.Test";
-
 $DNU = "dnu"
 $DNX = "dnx"
 $DNVM = "dnvm"
@@ -14,6 +10,9 @@ $DNVM = "dnvm"
 
 # use the correct version
 & $DNVM use 1.0.0-rc1-final -r coreclr
+
+$SolutionRoot = Split-Path -Path $PSScriptFilePath -Parent
+$TestsFolder = Join-Path -Path $SolutionRoot -ChildPath "test\Api.Test";
 
 & $DNU restore "$TestsFolder"
 if (-not $?)

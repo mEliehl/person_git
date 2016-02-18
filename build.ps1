@@ -9,12 +9,6 @@ param (
 	$PreReleaseName
 )
 
-$PSScriptFilePath = (Get-Item $MyInvocation.MyCommand.Path).FullName
-
-" PSScriptFilePath = $PSScriptFilePath"
-
-$SolutionRoot = Split-Path -Path $PSScriptFilePath -Parent
-
 $DNU = "dnu"
 $DNVM = "dnvm"
 
@@ -23,6 +17,12 @@ $DNVM = "dnvm"
 
 # use the correct version
 & $DNVM use 1.0.0-rc1-final -r coreclr
+
+$PSScriptFilePath = (Get-Item $MyInvocation.MyCommand.Path).FullName
+
+" PSScriptFilePath = $PSScriptFilePath"
+
+$SolutionRoot = Split-Path -Path $PSScriptFilePath -Parent
 
 # Make sure we don't have a release folder for this version already
 $BuildFolder = Join-Path -Path $SolutionRoot -ChildPath "build";
@@ -34,7 +34,7 @@ if ((Get-Item $ReleaseFolder -ErrorAction SilentlyContinue) -ne $null)
 }
 
 # Set the version number in package.json
-$ProjectJsonPath = Join-Path -Path $SolutionRoot -ChildPath "src\Domain\project.json"
+$ProjectJsonPath = Join-Path -Path $SolutionRoot -ChildPath "src\Api\project.json"
 (gc -Path $ProjectJsonPath) `
 	-replace "(?<=`"version`":\s`")[.\w-]*(?=`",)", "$ReleaseVersionNumber$PreReleaseName" |
 	sc -Path $ProjectJsonPath -Encoding UTF8
