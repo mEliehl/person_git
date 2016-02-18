@@ -10,10 +10,10 @@ $DNX = "dnx"
 $DNVM = "dnvm"
 
 # ensure the correct version
-& $DNVM install 1.0.0-rc1-update1
+& $DNVM install 1.0.0-rc1-final
 
 # use the correct version
-& $DNVM use 1.0.0-rc1-update1
+& $DNVM use 1.0.0-rc1-final
 
 & $DNU restore "$TestsFolder"
 if (-not $?)
