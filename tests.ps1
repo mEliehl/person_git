@@ -1,5 +1,6 @@
 $PSScriptFilePath = (Get-Item $MyInvocation.MyCommand.Path).FullName
 $SolutionRoot = Split-Path -Path $PSScriptFilePath -Parent
+$ProjectsPath = Join-Path -Path $SolutionRoot -ChildPath "test"
 
 " PSScriptFilePath = $PSScriptFilePath"
 $DNU = "dnu"
@@ -12,23 +13,20 @@ $DNVM = "dnvm"
 # use the correct version
 & $DNVM use 1.0.0-rc1-final -r coreclr
 
-Get-ChildItem -Path $PSScriptRoot\test -Filter project.json -Recurse | ForEach-Object { 
-	& $DNU restore $_.FullName 2>1
-	if (-not $?)
-	{
-		throw "The DNU restore process returned an error code."
-	}
+& $DNU restore "$ProjectsPath"
+if (-not $?)
+{
+	throw "The DNU restore process returned an error code."
 }
 
-Get-ChildItem -Path $PSScriptRoot\test -Filter project.json -Recurse | ForEach-Object { 
-	& $DNU build $_.FullName 2>1 	
-	if (-not $?)
-	{
-		throw "The DNU build process returned an error code."
-	}
+cd "$ProjectsPath" 
+& $DNU build "\*"
+if (-not $?)
+{
+	throw "The DNU restore process returned an error code."
 }
 
-Get-ChildItem -Path $PSScriptRoot\test -Filter project.json -Recurse | ForEach-Object { 
+Get-ChildItem -Path $ProjectsPath\test -Filter project.json -Recurse | ForEach-Object { 
 	& $DNX -p $_.FullName 2>1 test
 	if (-not $?)
 	{
