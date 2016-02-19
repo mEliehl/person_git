@@ -23,10 +23,10 @@ cd "$ProjectsPath"
 & $DNU build "\*"
 if (-not $?)
 {
-	throw "The DNU restore process returned an error code."
+	throw "The DNU build process returned an error code."
 }
 
-Get-ChildItem -Path $ProjectsPath\test -Filter project.json -Recurse | ForEach-Object { 
+Get-ChildItem -Path $ProjectsPath -Filter project.json -Recurse | ForEach-Object { 
 	& $DNX -p $_.FullName 2>1 test
 	if (-not $?)
 	{

@@ -23,6 +23,6 @@ cd "$ProjectsPath"
 & $DNU build "\*"
 if (-not $?)
 {
-	throw "The DNU restore process returned an error code."
+	throw "The DNU build process returned an error code."
 }
 
