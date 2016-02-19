@@ -25,4 +25,4 @@ if (-not $?)
 {
 	throw "The DNU build process returned an error code."
 }
-
+cd $SolutionRoot
