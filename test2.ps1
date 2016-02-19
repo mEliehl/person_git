@@ -13,7 +13,13 @@ $DNVM = "dnvm"
 & $DNVM use 1.0.0-rc1-final -r coreclr
 
 Get-ChildItem -Path $PSScriptRoot\test -Filter project.json -Depth 1 | ForEach-Object { 
-	& $DNU restore $_.FullName 2>1 
-	& $DNU build $_.FullName 2>1 
+	& $DNU restore $_.FullName 2>1
+}
+
+Get-ChildItem -Path $PSScriptRoot\test -Filter project.json -Depth 1 | ForEach-Object { 
+	& $DNU build $_.FullName 2>1 	
+}
+
+Get-ChildItem -Path $PSScriptRoot\test -Filter project.json -Depth 1 | ForEach-Object { 
 	& $DNX -p $_.FullName 2>1 test
 }

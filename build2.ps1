@@ -14,5 +14,8 @@ $DNVM = "dnvm"
 
 Get-ChildItem -Path $PSScriptRoot\src -Filter project.json -Depth 1 | ForEach-Object { 
 	& $DNU restore $_.FullName 2>1 
+}
+
+Get-ChildItem -Path $PSScriptRoot\src -Filter project.json -Depth 1 | ForEach-Object { 
 	& $DNU build $_.FullName 2>1 
 }
