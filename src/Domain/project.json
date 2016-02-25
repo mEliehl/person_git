@@ -6,6 +6,10 @@
   "projectUrl": "",
   "licenseUrl": "",
 
+  "dependencies": {
+    "CrossCutting": ""
+  },
+
   "frameworks": {
     "dnxcore50": {
       "dependencies": {

@@ -15,6 +15,7 @@ namespace Domain.Test.Entities
 
             Assert.Equal(name, person.Name);
             Assert.Equal(email, person.Email);
+            Assert.Equal(PersonStateEnun.New, person.State);
             Assert.NotEqual(Guid.Empty, person.Id);
         }
 

@@ -15,6 +15,7 @@ namespace Infra.EF.Configs
                 c.HasKey(k => k.Id);
                 c.Property(p => p.Name).IsRequired().HasMaxLength(100);
                 c.Property(p => p.Email).IsRequired().HasMaxLength(100);
+                c.Property(p => p.State).IsRequired();
             };
         }
     }
