@@ -1,0 +1,23 @@
+{
+  "name": "Person",
+  "version": "1.0.0",
+  "description": "Aspnet5 + EF7 + Angular",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "angular2": "^2.0.0-alpha.53"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://meliehl.visualstudio.com/DefaultCollection/_git/Person"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
