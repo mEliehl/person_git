@@ -36,7 +36,9 @@ namespace Api.Test.Fakes.Repositories
 
         public Person GetById(Guid id)
         {
-           return persons.LastOrDefault();
+            if (id != Guid.Empty)
+                return null;
+            return persons.LastOrDefault();
         }
 
         public Task<Person> GetByIdAsync(Guid id)

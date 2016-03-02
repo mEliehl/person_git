@@ -36,12 +36,38 @@ System.register(["angular2/core", 'angular2/router', "../../services/personServi
                     this.personService.getPerson(id)
                         .subscribe(function (response) {
                         _this.person = response;
-                    }, function (error) { return console.error('Error: ' + error); });
+                    }, function (error) {
+                        console.log('Error: ' + error);
+                    });
                 };
                 DeletePersonComponent.prototype.onRemove = function () {
                     var _this = this;
                     var id = this.person.id;
-                    this.personService.deletePerson(id).subscribe(function (data) { _this.router.navigate(['ListPersonCenter']); });
+                    this.personService.deletePerson(id)
+                        .subscribe(function (data) {
+                        _this.router.navigate(['ListPersonCenter']);
+                    }, function (error) {
+                        var ul = document.createElement("ul");
+                        ul.textContent = "Errors";
+                        var errors = error.json();
+                        for (var item in errors) {
+                            var properties = errors[item];
+                            for (var _i = 0; _i < properties.length; _i++) {
+                                var property = properties[_i];
+                                var li = document.createElement("li");
+                                li.textContent = property;
+                                ul.appendChild(li);
+                            }
+                        }
+                        var myApp = document.getElementsByClassName("container")[0];
+                        var row = document.createElement("div");
+                        row.setAttribute("class", "row");
+                        var element = document.createElement("div");
+                        element.setAttribute("class", "card-panel small red accent-1");
+                        element.appendChild(ul);
+                        row.appendChild(element);
+                        myApp.insertBefore(row, myApp.firstChild);
+                    });
                 };
                 DeletePersonComponent = __decorate([
                     core_1.Component({

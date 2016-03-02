@@ -42,4 +42,8 @@ export class PersonService {
     deletePerson(id: any) {
         return this.dataService.delete(this.resource, id);
     }
+
+    blockPerson(id: any) {
+        return this.dataService.put("person/block", id);
+    }
 }

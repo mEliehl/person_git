@@ -1,6 +1,5 @@
 ﻿using CrossCutting.Exceptions;
 using Domain.Entities;
-using System;
 using Xunit;
 
 namespace Domain.Test.Entities
@@ -69,17 +68,6 @@ namespace Domain.Test.Entities
             person.Block();
             Assert.Equal(PersonStateEnun.Blocked, person.State);
         }
-
-
-
-
-
-
-
-
-
-
-
 
         [Theory]
         [InlineData("Marcos", "meliehl@outlook.com")]

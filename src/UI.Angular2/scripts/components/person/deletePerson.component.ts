@@ -31,11 +31,43 @@ export class DeletePersonComponent implements OnInit  {
             .subscribe(response => {
                 this.person = response;
             },
-            error => console.error('Error: ' + error));
+            error => {
+                console.log('Error: ' + error);
+            });
     }
 
     onRemove() {
         let id = this.person.id;
-        this.personService.deletePerson(id).subscribe(data => { this.router.navigate(['ListPersonCenter']); });
+        this.personService.deletePerson(id)
+            .subscribe(data => {
+                this.router.navigate(['ListPersonCenter']);
+            },
+            error => {
+                
+                let ul = document.createElement("ul");
+                ul.textContent = "Errors";
+                let errors = error.json();
+
+                for (let item in errors) {
+                    let properties = errors[item]
+                    for (let property of properties) {
+                        let li = document.createElement("li");
+                        li.textContent = property;
+                        ul.appendChild(li);
+                    }
+                }
+
+                let myApp = document.getElementsByClassName("container")[0]
+                let row = document.createElement("div");
+                row.setAttribute("class", "row");
+
+                let element = document.createElement("div");
+                element.setAttribute("class", "card-panel small red accent-1");
+                element.appendChild(ul);
+
+                row.appendChild(element);
+                myApp.insertBefore(row, myApp.firstChild);
+            }
+        );
     }
 }

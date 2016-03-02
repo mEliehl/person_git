@@ -60,6 +60,9 @@ System.register(['angular2/core', './dataService', "../models/person"], function
                 PersonService.prototype.deletePerson = function (id) {
                     return this.dataService.delete(this.resource, id);
                 };
+                PersonService.prototype.blockPerson = function (id) {
+                    return this.dataService.put("person/block", id);
+                };
                 PersonService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [dataService_1.DataService])

@@ -48,7 +48,7 @@ namespace Domain.Entities
 
         public bool CanDelete()
         {
-            throw new AppException("State", "Cannot delete person blocked");
+            throw new AppException("State", "Cannot delete person blocked!");
         }
 
         public string StateDescription()
@@ -71,35 +71,12 @@ namespace Domain.Entities
 
         public bool CanDelete()
         {
-            throw new AppException("State", "Cannot delete person blocked");
+            throw new AppException("State", "Cannot delete person approved!");
         }
 
         public string StateDescription()
         {
             return "Approved";
-        }
-    }
-
-    class NotImplementedPersonState : PersonState
-    {
-        public bool CanApprove()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanBlock()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanDelete()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string StateDescription()
-        {
-            throw new NotImplementedException();
         }
     }
 
@@ -110,13 +87,12 @@ namespace Domain.Entities
             switch (enun)
             {
                 case PersonStateEnun.New:
+                default:
                     return new NewPersonState();
                 case PersonStateEnun.Blocked:
                     return new BlockedPersonState();
                 case PersonStateEnun.Approved:
                     return new ApprovedPersonState();
-                default:
-                    return new NotImplementedPersonState();
             }
         }
     }
