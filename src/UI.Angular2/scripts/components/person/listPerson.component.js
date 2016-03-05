@@ -47,6 +47,9 @@ System.register(["angular2/core", 'angular2/router', "../../services/personServi
                 ListPersonComponent.prototype.add = function () {
                     this.router.navigate(['AddPerson']);
                 };
+                ListPersonComponent.prototype.block = function (person) {
+                    this.router.navigate(['BlockPerson', { id: person.id }]);
+                };
                 ListPersonComponent = __decorate([
                     core_1.Component({
                         templateUrl: "views/person/list.html",

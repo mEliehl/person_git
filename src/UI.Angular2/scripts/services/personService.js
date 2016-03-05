@@ -1,4 +1,4 @@
-System.register(['angular2/core', './dataService', "../models/person"], function(exports_1) {
+System.register(['angular2/http', 'angular2/core', './dataService', "../models/person"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +8,13 @@ System.register(['angular2/core', './dataService', "../models/person"], function
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, dataService_1, person_1;
+    var http_1, core_1, dataService_1, person_1;
     var PersonService;
     return {
         setters:[
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
             function (core_1_1) {
                 core_1 = core_1_1;
             },
@@ -23,7 +26,8 @@ System.register(['angular2/core', './dataService', "../models/person"], function
             }],
         execute: function() {
             PersonService = (function () {
-                function PersonService(dataService) {
+                function PersonService(dataService, http) {
+                    this.http = http;
                     this.dataService = dataService;
                 }
                 Object.defineProperty(PersonService.prototype, "resource", {
@@ -61,11 +65,12 @@ System.register(['angular2/core', './dataService', "../models/person"], function
                     return this.dataService.delete(this.resource, id);
                 };
                 PersonService.prototype.blockPerson = function (id) {
-                    return this.dataService.put("person/block", id);
+                    var uri = this.dataService.baseURI + this.resource + "/" + id + "/block";
+                    return this.http.put(uri, null);
                 };
                 PersonService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [dataService_1.DataService])
+                    __metadata('design:paramtypes', [dataService_1.DataService, http_1.Http])
                 ], PersonService);
                 return PersonService;
             })();

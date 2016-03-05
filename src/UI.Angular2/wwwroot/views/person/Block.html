@@ -1,0 +1,13 @@
+﻿<h1>Block Person</h1>
+<div class="row"  *ngIf ="person">
+    <div class="card-panel yellow accent-1">
+        Are you sure that you want to block this person: <b> {{person.name}} </b>?
+    </div>
+
+    <a [routerLink]="['ListPersonCenter']" class="btn-floating btn-large waves-effect waves-light btn red darken-3">
+        <i class="material-icons left">undo</i>
+    </a>
+    <button type="submit" class="btn-floating btn-large waves-effect waves-light btn" (click)="onBlock()">
+        <i class="material-icons left">done</i>
+    </button>
+</div>

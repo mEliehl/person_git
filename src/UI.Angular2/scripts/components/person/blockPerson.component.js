@@ -9,7 +9,7 @@ System.register(["angular2/core", 'angular2/router', "../../services/personServi
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, router_1, personService_1;
-    var DeletePersonComponent;
+    var BlockPersonComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -22,16 +22,16 @@ System.register(["angular2/core", 'angular2/router', "../../services/personServi
                 personService_1 = personService_1_1;
             }],
         execute: function() {
-            DeletePersonComponent = (function () {
-                function DeletePersonComponent(routeParams, router, personService) {
+            BlockPersonComponent = (function () {
+                function BlockPersonComponent(routeParams, router, personService) {
                     this.routeParams = routeParams;
                     this.router = router;
                     this.personService = personService;
                 }
-                DeletePersonComponent.prototype.ngOnInit = function () {
+                BlockPersonComponent.prototype.ngOnInit = function () {
                     this.getDate(this.routeParams.get('id'));
                 };
-                DeletePersonComponent.prototype.getDate = function (id) {
+                BlockPersonComponent.prototype.getDate = function (id) {
                     var _this = this;
                     this.personService.getPerson(id)
                         .subscribe(function (response) {
@@ -40,25 +40,25 @@ System.register(["angular2/core", 'angular2/router', "../../services/personServi
                         console.log('Error: ' + error);
                     });
                 };
-                DeletePersonComponent.prototype.onRemove = function () {
+                BlockPersonComponent.prototype.onBlock = function () {
                     var _this = this;
                     var id = this.person.id;
-                    this.personService.deletePerson(id)
+                    this.personService.blockPerson(id)
                         .subscribe(function (data) {
                         _this.router.navigate(['ListPersonCenter']);
                     }, function (error) { return console.error('Error: ' + error); });
                 };
-                DeletePersonComponent = __decorate([
+                BlockPersonComponent = __decorate([
                     core_1.Component({
-                        templateUrl: "views/person/delete.html",
+                        templateUrl: "views/person/block.html",
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [router_1.RouteParams, router_1.Router, personService_1.PersonService])
-                ], DeletePersonComponent);
-                return DeletePersonComponent;
+                ], BlockPersonComponent);
+                return BlockPersonComponent;
             })();
-            exports_1("DeletePersonComponent", DeletePersonComponent);
+            exports_1("BlockPersonComponent", BlockPersonComponent);
         }
     }
 });
-//# sourceMappingURL=deletePerson.component.js.map
+//# sourceMappingURL=blockPerson.component.js.map

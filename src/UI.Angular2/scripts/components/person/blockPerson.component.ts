@@ -4,11 +4,11 @@ import {Person} from "../../models/person"
 import {PersonService} from "../../services/personService"
 
 @Component({
-    templateUrl: "views/person/delete.html",
+    templateUrl: "views/person/block.html",
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class DeletePersonComponent implements OnInit  {
+export class BlockPersonComponent implements OnInit  {
     person: Person;
     private router: Router;
     private routeParams: RouteParams;
@@ -36,9 +36,9 @@ export class DeletePersonComponent implements OnInit  {
             });
     }
 
-    onRemove() {
+    onBlock() {
         let id = this.person.id;
-        this.personService.deletePerson(id)
+        this.personService.blockPerson(id)
             .subscribe(data => {
                 this.router.navigate(['ListPersonCenter']);
             },

@@ -5,6 +5,7 @@ import {ListPersonComponent}   from './components/person/listperson.component';
 import {AddPersonComponent}   from './components/person/addperson.component';
 import {DeletePersonComponent}   from './components/person/deletePerson.component';
 import {EditPersonComponent}   from './components/person/editPerson.component';
+import {BlockPersonComponent}   from './components/person/blockPerson.component';
 
 @Component({
     selector: 'my-app',
@@ -21,6 +22,7 @@ import {EditPersonComponent}   from './components/person/editPerson.component';
         { path: '/person', name: 'ListPersonCenter', component: ListPersonComponent, useAsDefault: true },
         { path: '/person/add', name: 'AddPerson', component: AddPersonComponent },
         { path: '/person/delete/:id', name: 'DeletePerson', component: DeletePersonComponent },
-        { path: '/person/edit/:id', name: 'EditPerson', component: EditPersonComponent }
+        { path: '/person/edit/:id', name: 'EditPerson', component: EditPersonComponent },
+        { path: '/person/block/:id', name: 'BlockPerson', component: BlockPersonComponent },
 ])
 export class AppComponent { }

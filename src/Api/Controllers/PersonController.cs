@@ -78,7 +78,7 @@ namespace Api.Controllers
             return new HttpStatusCodeResult((int)HttpStatusCode.OK);
         }
 
-        [HttpPut("[action]/{id:Guid}")]
+        [HttpPut("{id:Guid}/[action]")]
         public async Task<IActionResult> Block(Guid id)
         {
             try
@@ -99,7 +99,7 @@ namespace Api.Controllers
             return new HttpStatusCodeResult((int)HttpStatusCode.OK);
         }
 
-        [HttpPut("[action]/{id:Guid}")]
+        [HttpPut("{id:Guid}/[action]")]
         public async Task<IActionResult> Approve(Guid id)
         {
             try

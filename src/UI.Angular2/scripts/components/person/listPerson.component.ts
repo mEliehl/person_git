@@ -42,4 +42,8 @@ export class ListPersonComponent implements OnInit {
     add() {
         this.router.navigate(['AddPerson']);
     }
+
+    block(person: Person) {
+        this.router.navigate(['BlockPerson', { id: person.id }]);
+    }
 }

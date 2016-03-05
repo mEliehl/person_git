@@ -4,7 +4,7 @@ import {Constant} from "../common/constants"
 
 @Injectable()
 export class DataService {
-    private get baseURI(): string { return Constant.BASE_URI };
+    get baseURI(): string { return Constant.BASE_URI };
     private http: Http;
 
     constructor(http: Http) {

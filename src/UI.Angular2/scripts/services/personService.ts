@@ -1,13 +1,17 @@
-﻿import { Injectable } from 'angular2/core';
+﻿import { Http } from 'angular2/http';
+import { Injectable } from 'angular2/core';
 import {DataService} from './dataService'
 import {Person} from "../models/person"
 
 @Injectable()
 export class PersonService {
     private dataService: DataService;
+    private http: Http;
     private get resource(): string { return "person" };
     
-    constructor(dataService: DataService) {
+    constructor(dataService: DataService,
+        http: Http) {
+        this.http = http;
         this.dataService = dataService;
     }
 
@@ -44,6 +48,7 @@ export class PersonService {
     }
 
     blockPerson(id: any) {
-        return this.dataService.put("person/block", id);
+        let uri = this.dataService.baseURI + this.resource+ "/" + id + "/block";
+        return this.http.put(uri, null);
     }
 }
